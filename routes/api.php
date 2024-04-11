@@ -2,6 +2,7 @@
 
 use App\http\Controllers\AreasController;
 use App\http\Controllers\DriversController;
+use App\http\Controllers\TrucksController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::get("/driver", [DriversController::class, 'readAllDrivers']);
 Route::get("/driver/{id}", [DriversController::class, 'readDriver']);
 Route::post("/driver/{id}", [DriversController::class, 'updateDriver']);
 Route::delete("/driver/{id}", [DriversController::class, 'deleteDriver']);
+
+Route::post("/truck", [TrucksController::class, 'createTruck']);
+Route::get("/truck", [TrucksController::class, 'readAllTrucks']);
+Route::get("/truck/{id}", [TrucksController::class, 'readTruck']);
+Route::post("/truck/{id}", [TrucksController::class, 'updateTruck']);
+Route::delete("/truck/{id}", [TrucksController::class, 'deleteTruck']);
 
