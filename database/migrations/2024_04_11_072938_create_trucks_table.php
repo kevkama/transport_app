@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('trucks', function (Blueprint $table) {
             $table->id();            
-            $table->String('truck_name');
-            $table->UnsignedBigInteger('driver_id');
-            $table->foreign('driver_id')->reference('id')->on('drivers');
+            $table->string('truck_name');
+            $table->unsignedBigInteger('driver_id');
+            $table->foreign('driver_id')->references('id')->on('drivers');
             $table->timestamps();
 
         });

@@ -1,6 +1,7 @@
 <?php
 
 use App\http\Controllers\AreasController;
+use App\Http\Controllers\AuthController;
 use App\http\Controllers\DriversController;
 use App\http\Controllers\TrucksController;
 use Illuminate\Http\Request;
@@ -17,12 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get("/area", [AreasController::class, 'readAllAreas']);
+
+    // return $request->user();
 });
+// public APIs
+Route::post('/register',[AuthController::class, 'register']);
+Route::post('/login',[AuthController::class, 'login']);
 
 Route::post("/area", [AreasController::class, 'createArea']);
-Route::get("/area", [AreasController::class, 'readAllAreas']);
+// Route::get("/area", [AreasController::class, 'readAllAreas']);
 Route::get("/area/{id}", [AreasController::class, 'readArea']);
 Route::post("/area/{id}", [AreasController::class, 'updateArea']);
 Route::delete("/area/{id}", [AreasController::class, 'deleteArea']);
@@ -39,3 +45,4 @@ Route::get("/truck/{id}", [TrucksController::class, 'readTruck']);
 Route::post("/truck/{id}", [TrucksController::class, 'updateTruck']);
 Route::delete("/truck/{id}", [TrucksController::class, 'deleteTruck']);
 
+// Protected APIs
